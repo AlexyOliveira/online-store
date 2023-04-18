@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   products: [],
 };
 
-const favoriteSongsReducer = (state = INITIAL_STATE, action) => {
+const productReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case SET_SEARCH:
     return {
@@ -16,4 +16,4 @@ const favoriteSongsReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default favoriteSongsReducer;
+export default productReducer;
