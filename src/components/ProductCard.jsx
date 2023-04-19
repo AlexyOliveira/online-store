@@ -18,6 +18,7 @@ function ProductCard({ products }) {
       title,
       thumbnail,
       id,
+      quantity: 1,
     };
     cart.push(product);
     localStorage.setItem('cart2709', JSON.stringify(cart));

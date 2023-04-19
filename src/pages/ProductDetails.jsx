@@ -31,6 +31,7 @@ function ProductDetails() {
     const producData = {
       id,
       price,
+      quantity: 1,
       thumbnail,
       title,
     };
@@ -63,6 +64,7 @@ function ProductDetails() {
                 R$
                 {' '}
                 {product.price}
+                {/* problema com toFixed no price */}
               </span>
             </div>
             <div className="descriptions">
