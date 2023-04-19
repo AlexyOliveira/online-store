@@ -11,6 +11,10 @@ function ProductDetails() {
   const [details, setDetails] = useState([]);
   useEffect(() => {
     const getProduct = async () => {
+      const localCart = localStorage.getItem('cart2709');
+      if (!localCart) {
+        localStorage.setItem('cart2709', JSON.stringify([]));
+      }
       setLoading(true);
       const LocalStorageId = localStorage.getItem('id');
       const productResult = await getProductById(LocalStorageId);
@@ -22,11 +26,28 @@ function ProductDetails() {
     };
     getProduct();
   }, []);
+
+  const handleClick = (id, price, thumbnail, title) => {
+    const producData = {
+      id,
+      price,
+      thumbnail,
+      title,
+    };
+    const localCart = localStorage.getItem('cart2709');
+    const cart = JSON.parse(localCart);
+    const isProduct = cart?.find((c) => c.id === id);
+    if (isProduct) {
+      return alert('Você já possui esse item no seu carrinho! 🛒');
+    }
+    cart.push(producData);
+    localStorage.setItem('cart2709', JSON.stringify(cart));
+  };
+
   return (
     <div>
       <Header />
       <div>
-        {console.log(product)}
         {loading ? (
           <h1>carregando..</h1>
         ) : (
@@ -38,24 +59,39 @@ function ProductDetails() {
                 src={ thumb }
                 alt={ product.title }
               />
-              <span data-testid="product-detail-price">{product.price}</span>
+              <span data-testid="product-detail-price">
+                R$
+                {' '}
+                {product.price}
+              </span>
             </div>
             <div className="descriptions">
               <ul>
-                {
-                  details.map((detail) => detail.value_name && (
+                {details.map(
+                  (detail) => detail.value_name && (
                     <li key={ detail.id }>
                       <span style={ { color: 'red' } }>{detail.name}</span>
                       {': '}
                       {detail.value_name}
                     </li>
-                  ))
-                }
+                  ),
+                )}
               </ul>
-
             </div>
           </>
         )}
+        <button
+          onClick={ () => handleClick(
+            product.id,
+            product.price,
+            product.thumbnail,
+            product.title,
+          ) }
+          data-testid="product-detail-add-to-cart"
+          type="button"
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     </div>
   );

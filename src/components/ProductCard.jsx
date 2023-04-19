@@ -11,7 +11,7 @@ function ProductCard({ products }) {
     const cart = JSON.parse(cartFromLocalSt);
     const isProduct = cart?.find((c) => c.id === id);
     if (isProduct) {
-      return alert('Você já possui esse item no seu carrinho!');
+      return alert('Você já possui esse item no seu carrinho! 🛒');
     }
     const product = {
       price,
@@ -37,7 +37,11 @@ function ProductCard({ products }) {
             <img src={ thumbnail } alt={ title } />
             <p>{title}</p>
           </Link>
-          <span>{price}</span>
+          <span>
+            R$
+            {' '}
+            {price.toFixed(2)}
+          </span>
           <button
             onClick={ () => handleCartClick(price, title, thumbnail, id) }
             data-testid="product-add-to-cart"

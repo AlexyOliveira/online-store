@@ -10,7 +10,8 @@ function Cart() {
   }, []);
   return (
     <div>
-      {!cartList ? (
+      {console.log(cartList)}
+      {!cartList || !cartList.length ? (
         <h2 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </h2>
@@ -29,7 +30,7 @@ function Cart() {
                 </div>
                 <span>
                   $
-                  {product.price}
+                  {product.price.toFixed(2)}
                 </span>
               </li>
             ))}
