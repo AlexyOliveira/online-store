@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import Categories from '../components/Categories';
@@ -6,6 +6,12 @@ import ProductCard from '../components/ProductCard';
 
 function InitialPage() {
   const products = useSelector((state) => state.searchReducer.products);
+  useEffect(() => {
+    const isCart = localStorage.getItem('cart2709');
+    if (!isCart) {
+      localStorage.setItem('cart2709', JSON.stringify([]));
+    }
+  }, []);
   return (
     <div className="initial-page">
       <Header />

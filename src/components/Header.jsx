@@ -16,13 +16,9 @@ function Header() {
   const handleClick = async () => {
     const products = await getProductsFromCategoryAndQuery('', input);
     dispatch(saveProducts(products.results));
-    // inplementar um dispatch, e um set para a rota da pag principal
     history.push('/');
   };
-  // useEffect(() => {
-  //   // implementar o dispatch
-  //   console.log(input);
-  // }, [input]);
+
   return (
     <div>
       <div className="searchField">
