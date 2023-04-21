@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import { getProductById } from '../services/api';
+import Form from '../components/Form';
 
 function ProductDetails() {
   // const id = useSelector((state) => state.productIdReducer.id);
@@ -25,6 +26,7 @@ function ProductDetails() {
       setLoading(false);
     };
     getProduct();
+    console.log(product);
   }, []);
 
   const handleClick = (id, price, thumbnail, title) => {
@@ -44,7 +46,6 @@ function ProductDetails() {
     cart.push(producData);
     localStorage.setItem('cart2709', JSON.stringify(cart));
   };
-
   return (
     <div>
       <Header />
@@ -95,6 +96,7 @@ function ProductDetails() {
           Adicionar ao Carrinho
         </button>
       </div>
+      <Form productId={ product.id } />
     </div>
   );
 }
