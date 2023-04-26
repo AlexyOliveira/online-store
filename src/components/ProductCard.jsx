@@ -6,9 +6,11 @@ function ProductCard({ products }) {
   const handleClick = (id) => {
     localStorage.setItem('id', id);
   };
-  const handleCartClick = (price, title, thumbnail, id) => {
+  const handleAddToCart = (price, title, thumbnail, id) => {
     const cartFromLocalSt = localStorage.getItem('cart2709');
+    const productsPriceLocal = localStorage.getItem('productsPrice2709');
     const cart = JSON.parse(cartFromLocalSt);
+    const productsPriceData = JSON.parse(productsPriceLocal);
     const isProduct = cart?.find((c) => c.id === id);
     if (isProduct) {
       return alert('Você já possui esse item no seu carrinho! 🛒');
@@ -20,8 +22,14 @@ function ProductCard({ products }) {
       id,
       quantity: 1,
     };
+    const productPrice = {
+      id,
+      price,
+    };
+    productsPriceData.push(productPrice);
     cart.push(product);
     localStorage.setItem('cart2709', JSON.stringify(cart));
+    localStorage.setItem('productsPrice2709', JSON.stringify(productsPriceData));
   };
   return (
     <div className="products">
@@ -44,7 +52,7 @@ function ProductCard({ products }) {
             {price.toFixed(2)}
           </span>
           <button
-            onClick={ () => handleCartClick(price, title, thumbnail, id) }
+            onClick={ () => handleAddToCart(price, title, thumbnail, id) }
             data-testid="product-add-to-cart"
             type="button"
           >

@@ -6,6 +6,7 @@ import InitialPage from './pages/InitialPage';
 import Cart from './pages/Cart';
 import store from './redux/store';
 import ProductDetails from './pages/ProductDetails';
+import CheckOut from './pages/CheckOut';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" component={ InitialPage } />
         <Route exact path="/cart" component={ Cart } />
         <Route exact path="/details" component={ ProductDetails } />
+        <Route exact path="/checkout" component={ CheckOut } />
       </Switch>
     </Provider>
 

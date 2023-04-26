@@ -8,8 +8,12 @@ function InitialPage() {
   const products = useSelector((state) => state.searchReducer.products);
   useEffect(() => {
     const isCart = localStorage.getItem('cart2709');
+    const isProductsPrice = localStorage.getItem('productsPrice2709');
     if (!isCart) {
       localStorage.setItem('cart2709', JSON.stringify([]));
+    }
+    if (!isProductsPrice) {
+      localStorage.setItem('productsPrice2709', JSON.stringify([]));
     }
   }, []);
   return (
