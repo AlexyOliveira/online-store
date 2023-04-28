@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Cart from './Cart';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import Cart from './Cart';
 
 function CheckOut() {
   const [formData, setFormData] = useState({
@@ -27,7 +27,12 @@ function CheckOut() {
 
   const handleChangeRadio = ({ target }) => {
     setFormData({ ...formData, card: target.name });
-    console.log(target.name);
+    const checks = document.querySelectorAll('#paymentMethode');
+    checks.forEach((c) => {
+      if (c.name !== target.name) {
+        c.checked = false;
+      }
+    });
   };
 
   const handleSubmit = (e) => {
@@ -55,9 +60,6 @@ function CheckOut() {
 
   return (
     <div>
-      {
-        console.log(formData.card)
-      }
       <div>
         <h2>Revise seus Produtos</h2>
         <Cart />

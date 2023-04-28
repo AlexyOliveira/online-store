@@ -1,12 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import './Cart.css';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
+import { setProductsSum } from '../redux/actions';
+import Header from '../components/Header';
 
 function Cart() {
   const [cartList, setCartList] = useState();
   const [totalPriceState, setTotalPriceState] = useState(0);
-  // const [productPrice, setProductPrice] = useState();
+  const dispatch = useDispatch();
   const { location } = useHistory();
+
+  const productsSumIncrease = () => {
+    const localStorageProducts = localStorage.getItem('cart2709');
+    const productsParse = JSON.parse(localStorageProducts);
+    const sum = productsParse.reduce((ac, product) => ac + product.quantity, 0);
+    dispatch(setProductsSum(sum));
+  };
+
+  const productsSumDecrease = () => {
+    const localStorageProducts = localStorage.getItem('cart2709');
+    const productsParse = JSON.parse(localStorageProducts);
+    const sum = productsParse.reduce(
+      (ac, product) => ac - product.quantity,
+      0,
+    );
+    dispatch(setProductsSum(sum));
+  };
 
   const totalPrice = () => {
     const cartFromLocalSt = localStorage.getItem('cart2709');
@@ -22,18 +42,23 @@ function Cart() {
   useEffect(() => {
     const cartFromLocalSt = localStorage.getItem('cart2709');
     const cart = JSON.parse(cartFromLocalSt);
+    productsSumIncrease();
     totalPrice();
     setCartList(cart);
   }, []);
 
   const increaseHandle = (productId) => {
     const productsPriceLocal = localStorage.getItem('productsPrice2709');
+    const cart = localStorage.getItem('cart2709');
+
     const productsPriceData = JSON.parse(productsPriceLocal);
+    const cartData = JSON.parse(cart);
+
     const price = productsPriceData.filter(
       (product) => product.id === productId,
     );
-    const newCartList = cartList.map((product) => {
-      if (product.id === productId) {
+    const newCartList = cartData.map((product) => {
+      if (product.id === productId && product.quantity < product.availableQuantity) {
         return {
           ...product,
           quantity: product.quantity + 1,
@@ -45,24 +70,27 @@ function Cart() {
     setCartList(newCartList);
     localStorage.setItem('cart2709', JSON.stringify(newCartList));
     totalPrice();
+    productsSumIncrease();
   };
 
   const decreaseHandle = (productId) => {
     const productsPriceLocal = localStorage.getItem('productsPrice2709');
+    const cart = localStorage.getItem('cart2709');
     const productsPriceData = JSON.parse(productsPriceLocal);
-    const price = productsPriceData.filter(
+    const cartData = JSON.parse(cart);
+    const [price] = productsPriceData.filter(
       (product) => product.id === productId,
     );
-    const newCartList = cartList.map((product) => {
+    const newCartList = cartData.map((product) => {
       if (product.id === productId) {
         const newQuantity = product.quantity > 1 ? product.quantity - 1 : 1;
         return {
           ...product,
           quantity: newQuantity,
           price:
-            product.price > price[0].price
-              ? product.price - price[0].price
-              : price[0].price,
+            product.price >= price.price + 1
+              ? product.price - price.price
+              : price.price,
         };
       }
       return product;
@@ -70,6 +98,7 @@ function Cart() {
     setCartList(newCartList);
     localStorage.setItem('cart2709', JSON.stringify(newCartList));
     totalPrice();
+    productsSumDecrease();
   };
 
   const deleteHandle = (id) => {
@@ -77,9 +106,11 @@ function Cart() {
     setCartList(newCartList);
     localStorage.setItem('cart2709', JSON.stringify(newCartList));
     totalPrice();
+    productsSumIncrease();
   };
   return (
     <div>
+      <Header />
       {location.pathname === '/cart' && <h2>Carrinho de Compras</h2>}
 
       {!cartList || !cartList.length ? (
@@ -89,14 +120,19 @@ function Cart() {
       ) : (
         <div>
           <ul>
-            {cartList?.map((product) => (
-              <li key={ product.id }>
+            {cartList?.map((product, index) => (
+              <li key={ product.id + index }>
                 <span
                   onClick={ () => deleteHandle(product.id) }
                   data-testid="remove-product"
                 >
                   X
                 </span>
+                <p>
+                  Quantidade disponível:
+                  {' '}
+                  {product.availableQuantity}
+                </p>
                 <img src={ product.thumbnail } alt={ product.title } />
                 <p data-testid="shopping-cart-product-name">{product.title}</p>
                 <div>

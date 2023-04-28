@@ -1,19 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
+import { setProductsSum } from '../redux/actions';
 
 function ProductCard({ products }) {
+  const dispatch = useDispatch();
   const handleClick = (id) => {
     localStorage.setItem('id', id);
   };
-  const handleAddToCart = (price, title, thumbnail, id) => {
+
+  const productsSum = () => {
+    const localStorageProducts = localStorage.getItem('cart2709');
+    const productsParse = JSON.parse(localStorageProducts);
+    const sum = productsParse.reduce((ac, product) => ac + product.quantity, 0);
+    dispatch(setProductsSum(sum));
+  };
+
+  const handleAddToCart = (produc) => {
+    const {
+      price,
+      title,
+      thumbnail,
+      id,
+      available_quantity: availableQuantity,
+      shipping,
+    } = produc;
     const cartFromLocalSt = localStorage.getItem('cart2709');
     const productsPriceLocal = localStorage.getItem('productsPrice2709');
     const cart = JSON.parse(cartFromLocalSt);
     const productsPriceData = JSON.parse(productsPriceLocal);
-    const isProduct = cart?.find((c) => c.id === id);
+    const isProduct = cart?.find((p) => p.id === id);
     if (isProduct) {
-      return alert('Você já possui esse item no seu carrinho! 🛒');
+      return alert(
+        'Você já possui esse item!'
+          + ' Para adicionar mais desse item acesse seu carrinho de compras 🛒',
+      );
     }
     const product = {
       price,
@@ -21,6 +43,8 @@ function ProductCard({ products }) {
       thumbnail,
       id,
       quantity: 1,
+      availableQuantity,
+      shipping,
     };
     const productPrice = {
       id,
@@ -29,30 +53,38 @@ function ProductCard({ products }) {
     productsPriceData.push(productPrice);
     cart.push(product);
     localStorage.setItem('cart2709', JSON.stringify(cart));
-    localStorage.setItem('productsPrice2709', JSON.stringify(productsPriceData));
+    localStorage.setItem(
+      'productsPrice2709',
+      JSON.stringify(productsPriceData),
+    );
+    productsSum();
   };
+
   return (
     <div className="products">
-      {products.map(({ id, price, title, thumbnail }) => (
+      {products.map((p) => (
         <div
           role="link"
           onKeyDown={ handleClick }
-          onClick={ () => handleClick(id) }
+          onClick={ () => handleClick(p.id) }
           data-testid="product"
-          key={ id }
+          key={ p.id }
           tabIndex={ 0 }
         >
           <Link data-testid="product-detail-link" to="/details">
-            <img src={ thumbnail } alt={ title } />
-            <p>{title}</p>
+            <img src={ p.thumbnail } alt={ p.title } />
+            {p.shipping.free_shipping && (
+              <p data-testid="free-shipping">Frete grátis</p>
+            )}
+            <p>{p.title}</p>
           </Link>
           <span>
             R$
             {' '}
-            {price.toFixed(2)}
+            {p.price.toFixed(2)}
           </span>
           <button
-            onClick={ () => handleAddToCart(price, title, thumbnail, id) }
+            onClick={ () => handleAddToCart(p) }
             data-testid="product-add-to-cart"
             type="button"
           >

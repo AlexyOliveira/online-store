@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import { saveProducts } from '../redux/actions';
 
 function Header() {
+  const sumReducer = useSelector((state) => state.productsSumReducer.sum);
   const [input, setInput] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
@@ -36,6 +37,8 @@ function Header() {
       <Link to="/cart">
         <button data-testid="shopping-cart-button" type="button">
           Cart
+          {' '}
+          <strong data-testid="shopping-cart-size">{Math.abs(sumReducer)}</strong>
         </button>
       </Link>
     </div>
