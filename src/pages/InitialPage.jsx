@@ -30,7 +30,10 @@ function InitialPage() {
   return (
     <div className="initial-page">
       <Header />
-      <Categories />
+      <div id="initial-p-categories">
+        <Categories />
+      </div>
+
       {products.length < 1 ? (
         <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
