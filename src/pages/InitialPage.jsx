@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Categories from '../components/Categories';
 import ProductCard from '../components/ProductCard';
 import { setProductsSum } from '../redux/actions';
+import './InitialPage.css';
 
 function InitialPage() {
   const products = useSelector((state) => state.searchReducer.products);
@@ -30,15 +31,19 @@ function InitialPage() {
   return (
     <div className="initial-page">
       <Header />
-      <div id="initial-p-categories">
-        <Categories />
+      <div className="initial-page-inside-box">
+        <div id="initial-p-categories">
+          <Categories />
+        </div>
+        {products.length < 1 ? (
+          <div>
+            <h2>voce ainda não realizou uma busca</h2>
+            <p data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
+          </div>
+        ) : <ProductCard products={ products } />}
       </div>
-
-      {products.length < 1 ? (
-        <h2 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h2>
-      ) : <ProductCard products={ products } />}
     </div>
   );
 }

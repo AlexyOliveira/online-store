@@ -1,0 +1,83 @@
+.card-p {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  width: 300px;
+  margin: 10px;
+  height: 500px;
+  align-items: center;
+  box-shadow: 2.75926px 2.75926px 5.51852px rgba(0, 0, 0, 0.05);
+}
+
+.products {
+  margin-top: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  width: 80%;
+}
+
+.card-img {
+  width: 80%;
+}
+
+.price-btn {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 40px;
+}
+
+.btn-cards {
+  width: 200px;
+  margin-top: 5px;
+  background-color: #2fc18c;
+  border: #2fc18c;
+}
+
+.product-title {
+  color: black;
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* sm applies to x-small devices portrait phones, less than 576px */
+@media (min-width: 708px) {
+  .card-p {
+   width: 200px;
+   height: 400px;
+  }
+  .btn-cards {
+    width: 130px;
+  }
+  .card-img {
+    height: 50%;
+    margin-top: 10px;
+  }
+  .product-title {
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .link {
+    width: 130px;
+    height: 222px;
+  }
+ .products {
+  margin-top: 100px;
+ }
+}

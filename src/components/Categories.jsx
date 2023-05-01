@@ -5,6 +5,7 @@ import {
   getProductsFromCategoryAndQuery,
 } from '../services/api';
 import { saveProducts } from '../redux/actions';
+import './Categories.css';
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -22,13 +23,15 @@ function Categories() {
     dispatch(saveProducts(products.results));
   };
   return (
-    <div>
+    <div className="categories-container">
+      <header className='cat'>Ctegories</header>
       <ul>
         {categories.map((categorie) => (
           <li
             onClick={ () => handleClick(categorie.id) }
             data-testid="category"
             key={ categorie.id }
+            className="li-categorie"
           >
             {categorie.name}
           </li>

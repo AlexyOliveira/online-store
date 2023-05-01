@@ -1,0 +1,15 @@
+.li-categorie {
+    padding: 5px;
+}
+.li-categorie:hover {
+    background-color: #2fc18c60;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.categories-container {
+    background-color: white;
+    width: 270px;
+    height: 100%;
+    padding: 5px;
+}

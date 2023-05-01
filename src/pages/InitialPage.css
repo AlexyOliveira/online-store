@@ -1,0 +1,11 @@
+.initial-page {
+   
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.initial-page-inside-box {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+}

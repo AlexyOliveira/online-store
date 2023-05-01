@@ -5,10 +5,9 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import React, { useEffect, useState } from 'react';
-import { saveProducts, screenWidthReducer } from '../redux/actions';
+import { saveProducts } from '../redux/actions';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from './Categories';
 import './Header.css';
@@ -34,19 +33,21 @@ function Header() {
   useEffect(() => {
     const sandBtn = document.querySelector('#sand-btn');
     const categories = document.querySelector('#initial-p-categories');
+    const hideCategories = 'hide-categories';
+    const number = 707;
 
     if (history.location.pathname === '/') {
-      if (screenWidth >= 707) {
+      if (screenWidth >= number) {
         sandBtn.classList.add('hide-sand-btn');
-        categories.classList.add('hide-categories');
+        categories.classList.add(hideCategories);
       } else {
         sandBtn.classList.remove('hide-sand-btn');
-        categories.classList.remove('hide-categories');
+        categories.classList.remove(hideCategories);
       }
-      if (screenWidth <= 707) {
-        categories.classList.add('hide-categories');
+      if (screenWidth <= number) {
+        categories.classList.add(hideCategories);
       } else {
-        categories.classList.remove('hide-categories');
+        categories.classList.remove(hideCategories);
       }
     }
   }, [screenWidth]);
@@ -64,13 +65,25 @@ function Header() {
   return (
     <div className="header">
       {[0].map((expand) => (
-        <Navbar key={ expand } bg="light" expand={ expand } className="mb-3">
+        <Navbar key={ expand } bg="light" expand={ expand } className="mb-3 p-0">
           <Container fluid>
-            <Form className="d-flex header-search">
+            <Form
+              className="d-flex header-search"
+              onSubmit={ (e) => {
+                e.preventDefault();
+                handleClick();
+              } }
+            >
               <Form.Control
                 onChange={ handleChange }
+                onKeyDown={ (e) => {
+                  if (e.key === 'Enter') {
+                    handleClick();
+                  }
+                } }
+                className="search-area"
                 data-testid="query-input"
-                placeholder="Type your search"
+                placeholder="Digite sua busca"
                 type="text"
               />
               <Button
@@ -110,6 +123,7 @@ function Header() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={ `offcanvasNavbarLabel-expand-${expand}` }>
+                  <i className="fa-regular fa-rectangle-list categories-icon" />
                   Categorias
                 </Offcanvas.Title>
               </Offcanvas.Header>

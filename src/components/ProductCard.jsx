@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from 'react-redux';
 import { setProductsSum } from '../redux/actions';
+import './ProductCard.css';
 
 function ProductCard({ products }) {
   const dispatch = useDispatch();
+  const titleLenght = 50;
+
   const handleClick = (id) => {
     localStorage.setItem('id', id);
   };
@@ -70,26 +73,37 @@ function ProductCard({ products }) {
           data-testid="product"
           key={ p.id }
           tabIndex={ 0 }
+          className="card-p"
         >
-          <Link data-testid="product-detail-link" to="/details">
-            <img src={ p.thumbnail } alt={ p.title } />
+          <Link
+            className="link"
+            data-testid="product-detail-link"
+            to="/details"
+          >
+            <img className="card-img" src={ p.thumbnail } alt={ p.title } />
             {p.shipping.free_shipping && (
               <p data-testid="free-shipping">Frete grátis</p>
             )}
-            <p>{p.title}</p>
+            <p className="product-title">
+              {p.title.substring(0, titleLenght)}
+              {p.title.length > titleLenght ? '...' : ''}
+            </p>
           </Link>
-          <span>
-            R$
-            {' '}
-            {p.price.toFixed(2)}
-          </span>
-          <button
-            onClick={ () => handleAddToCart(p) }
-            data-testid="product-add-to-cart"
-            type="button"
-          >
-            Add to cart
-          </button>
+          <div className="price-btn">
+            <span>
+              R$
+              {' '}
+              {p.price.toFixed(2)}
+            </span>
+            <button
+              onClick={ () => handleAddToCart(p) }
+              data-testid="product-add-to-cart"
+              type="button"
+              className="btn btn-primary btn-cards"
+            >
+              Add to cart
+            </button>
+          </div>
         </div>
       ))}
     </div>
