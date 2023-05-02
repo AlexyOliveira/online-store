@@ -36,7 +36,7 @@ function InitialPage() {
           <Categories />
         </div>
         {products.length < 1 ? (
-          <div>
+          <div className="no-search">
             <h2>voce ainda não realizou uma busca</h2>
             <p data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.

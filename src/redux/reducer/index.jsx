@@ -2,13 +2,13 @@ import { combineReducers } from 'redux';
 import searchReducer from './searchReducer';
 import productCartReducer from './productInCartReducer';
 import productsSumReducer from './productsSum';
-import screenReducer from './screenWidthReducer';
+import isLoadingReducer from './isLoadingReducer';
 
 const rootReducer = combineReducers({
   searchReducer,
   productCartReducer,
   productsSumReducer,
-  screenReducer,
+  isLoadingReducer,
 });
 
 export default rootReducer;

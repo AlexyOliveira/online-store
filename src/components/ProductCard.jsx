@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setProductsSum } from '../redux/actions';
 import './ProductCard.css';
+import loading from '../images/loading.gif';
 
 function ProductCard({ products }) {
+  const isLoading = useSelector((state) => state.isLoadingReducer.loading);
   const dispatch = useDispatch();
   const titleLenght = 50;
 
@@ -65,7 +67,7 @@ function ProductCard({ products }) {
 
   return (
     <div className="products">
-      {products.map((p) => (
+      { !isLoading ? products.map((p) => (
         <div
           role="link"
           onKeyDown={ handleClick }
@@ -105,7 +107,7 @@ function ProductCard({ products }) {
             </button>
           </div>
         </div>
-      ))}
+      )) : <img className="loading-img" src={ loading } alt="loading" /> }
     </div>
   );
 }

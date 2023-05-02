@@ -112,14 +112,14 @@
 /* `lg` applies to medium devices (tablets, less than 992px)*/
 @media (min-width: 850px) {
   .search-area {
-    width: 400px;
+    width: 380px;
   }
 }
 
 /* `xl` applies to large devices (desktops, less than 1200px)*/
 @media (min-width: 1199.98px) {
   .search-area {
-    width: 800px;
+    width: 700px;
   }
 }
 

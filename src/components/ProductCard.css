@@ -55,6 +55,10 @@
   font-weight: 700;
   font-size: 16px;
 }
+.loading-img {
+  margin-bottom: auto;
+ margin-top: 100px;
+}
 
 /* sm applies to x-small devices portrait phones, less than 576px */
 @media (min-width: 708px) {

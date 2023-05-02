@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import React, { useEffect, useState } from 'react';
-import { saveProducts } from '../redux/actions';
+import { isLoadingReducer, saveProducts } from '../redux/actions';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from './Categories';
 import './Header.css';
@@ -57,8 +57,10 @@ function Header() {
   };
 
   const handleClick = async () => {
+    dispatch(isLoadingReducer(true));
     const products = await getProductsFromCategoryAndQuery('', input);
     dispatch(saveProducts(products.results));
+    dispatch(isLoadingReducer(false));
     history.push('/');
   };
 

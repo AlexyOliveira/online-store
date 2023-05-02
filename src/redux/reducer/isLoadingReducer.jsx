@@ -1,15 +1,15 @@
-import { SET_SCREEN_WIDTH } from '../actions';
+import { SET_IS_LOADING } from '../actions';
 
 const INITIAL_STATE = {
-  screen: 0,
+  loading: false,
 };
 
 const screenReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case SET_SCREEN_WIDTH:
+  case SET_IS_LOADING:
     return {
       ...state,
-      screen: action.payload,
+      loading: action.payload,
     };
   default:
     return state;
