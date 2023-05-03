@@ -37,7 +37,7 @@ function InitialPage() {
         </div>
         {products.length < 1 ? (
           <div className="no-search">
-            <h2>voce ainda não realizou uma busca</h2>
+            <h2 style={ { color: '#31C28D' } }>voce ainda não realizou uma busca</h2>
             <p data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </p>

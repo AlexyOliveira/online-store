@@ -4,9 +4,9 @@
   flex-direction: column;
   justify-content: center;
   padding: 10px;
-  width: 300px;
+  width: 280px;
   margin: 10px;
-  height: 500px;
+  height: 315px;
   align-items: center;
   box-shadow: 2.75926px 2.75926px 5.51852px rgba(0, 0, 0, 0.05);
 }
@@ -31,14 +31,14 @@
 }
 
 .card-img {
-  width: 80%;
+  width: 50%;
 }
 
 .price-btn {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 40px;
+ 
 }
 
 .btn-cards {
@@ -56,22 +56,22 @@
   font-size: 16px;
 }
 .loading-img {
-  margin-bottom: auto;
- margin-top: 100px;
+ position: fixed;
+ bottom: 100px;
 }
 
 /* sm applies to x-small devices portrait phones, less than 576px */
 @media (min-width: 708px) {
   .card-p {
    width: 200px;
-   height: 400px;
+   height: 310px;
   }
   .btn-cards {
     width: 130px;
   }
   .card-img {
-    height: 50%;
     margin-top: 10px;
+    width: 100px;
   }
   .product-title {
     font-weight: 600;

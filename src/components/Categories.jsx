@@ -4,7 +4,7 @@ import {
   getCategories,
   getProductsFromCategoryAndQuery,
 } from '../services/api';
-import { saveProducts } from '../redux/actions';
+import { isLoadingReducer, saveProducts } from '../redux/actions';
 import './Categories.css';
 
 function Categories() {
@@ -19,12 +19,13 @@ function Categories() {
   }, []);
 
   const handleClick = async (id) => {
+    dispatch(isLoadingReducer(true));
     const products = await getProductsFromCategoryAndQuery(id, '');
+    dispatch(isLoadingReducer(false));
     dispatch(saveProducts(products.results));
   };
   return (
     <div className="categories-container">
-      <header className='cat'>Ctegories</header>
       <ul>
         {categories.map((categorie) => (
           <li

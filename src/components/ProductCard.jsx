@@ -67,47 +67,56 @@ function ProductCard({ products }) {
 
   return (
     <div className="products">
-      { !isLoading ? products.map((p) => (
-        <div
-          role="link"
-          onKeyDown={ handleClick }
-          onClick={ () => handleClick(p.id) }
-          data-testid="product"
-          key={ p.id }
-          tabIndex={ 0 }
-          className="card-p"
-        >
-          <Link
-            className="link"
-            data-testid="product-detail-link"
-            to="/details"
+      {!isLoading ? (
+        products.map((p) => (
+          <div
+            role="link"
+            onKeyDown={ handleClick }
+            onClick={ () => handleClick(p.id) }
+            data-testid="product"
+            key={ p.id }
+            tabIndex={ 0 }
+            className="card-p"
           >
-            <img className="card-img" src={ p.thumbnail } alt={ p.title } />
-            {p.shipping.free_shipping && (
-              <p data-testid="free-shipping">Frete grátis</p>
-            )}
-            <p className="product-title">
-              {p.title.substring(0, titleLenght)}
-              {p.title.length > titleLenght ? '...' : ''}
-            </p>
-          </Link>
-          <div className="price-btn">
-            <span>
-              R$
-              {' '}
-              {p.price.toFixed(2)}
-            </span>
-            <button
-              onClick={ () => handleAddToCart(p) }
-              data-testid="product-add-to-cart"
-              type="button"
-              className="btn btn-primary btn-cards"
+            <Link
+              className="link"
+              data-testid="product-detail-link"
+              to="/details"
             >
-              Add to cart
-            </button>
+              <img
+                title={ p.title }
+                className="card-img"
+                src={ p.thumbnail }
+                alt={ p.title }
+              />
+              {p.shipping.free_shipping && (
+                <p data-testid="free-shipping">Frete grátis</p>
+              )}
+              <p title={ p.title } className="product-title">
+                {p.title.substring(0, titleLenght)}
+                {p.title.length > titleLenght ? '...' : ''}
+              </p>
+            </Link>
+            <div className="price-btn">
+              <span>
+                R$
+                {' '}
+                {p.price.toFixed(2)}
+              </span>
+              <button
+                onClick={ () => handleAddToCart(p) }
+                data-testid="product-add-to-cart"
+                type="button"
+                className="btn btn-primary btn-cards"
+              >
+                Add to cart
+              </button>
+            </div>
           </div>
-        </div>
-      )) : <img className="loading-img" src={ loading } alt="loading" /> }
+        ))
+      ) : (
+        <img className="loading-img" src={ loading } alt="loading" />
+      )}
     </div>
   );
 }
