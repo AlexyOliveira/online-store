@@ -10,6 +10,7 @@ function Cart() {
   const [totalPriceState, setTotalPriceState] = useState(0);
   const dispatch = useDispatch();
   const { location } = useHistory();
+  const titleLenght = 20;
 
   const productsSumIncrease = () => {
     const localStorageProducts = localStorage.getItem('cart2709');
@@ -21,10 +22,7 @@ function Cart() {
   const productsSumDecrease = () => {
     const localStorageProducts = localStorage.getItem('cart2709');
     const productsParse = JSON.parse(localStorageProducts);
-    const sum = productsParse.reduce(
-      (ac, product) => ac - product.quantity,
-      0,
-    );
+    const sum = productsParse.reduce((ac, product) => ac - product.quantity, 0);
     dispatch(setProductsSum(sum));
   };
 
@@ -58,7 +56,10 @@ function Cart() {
       (product) => product.id === productId,
     );
     const newCartList = cartData.map((product) => {
-      if (product.id === productId && product.quantity < product.availableQuantity) {
+      if (
+        product.id === productId
+        && product.quantity < product.availableQuantity
+      ) {
         return {
           ...product,
           quantity: product.quantity + 1,
@@ -109,64 +110,80 @@ function Cart() {
     productsSumIncrease();
   };
   return (
-    <div>
+    <div className="cart-container-area">
       <Header />
-      {location.pathname === '/cart' && <h2>Carrinho de Compras</h2>}
 
       {!cartList || !cartList.length ? (
         <h3 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </h3>
       ) : (
-        <div>
-          <ul>
+        <div className="cart-products">
+          {location.pathname === '/cart' && <h2>Carrinho de Compras</h2>}
+          <hr className="cart-card hr" />
+          <ul className="ul-cart">
             {cartList?.map((product, index) => (
-              <li key={ product.id + index }>
-                <span
-                  onClick={ () => deleteHandle(product.id) }
-                  data-testid="remove-product"
-                >
-                  X
-                </span>
-                <p>
-                  Quantidade disponível:
-                  {' '}
-                  {product.availableQuantity}
-                </p>
-                <img src={ product.thumbnail } alt={ product.title } />
-                <p data-testid="shopping-cart-product-name">{product.title}</p>
-                <div>
-                  <div
-                    className="inc-dec"
-                    onClick={ () => decreaseHandle(product.id) }
-                    data-testid="product-decrease-quantity"
+              <div className="cart-card" key={ product.id + index }>
+                <li className="cart-card-info">
+                  <span
+                    className="card-info-delete"
+                    onClick={ () => deleteHandle(product.id) }
+                    data-testid="remove-product"
                   >
-                    -
+                    X
+                  </span>
+                  <div className="img-title">
+                    <img src={ product.thumbnail } alt={ product.title } />
+                    <p
+                      data-testid="shopping-cart-product-name"
+                      title={ product.title }
+                      className="product-title"
+                    >
+                      {product.title.substring(0, titleLenght)}
+                      {product.title.length > titleLenght ? '...' : ''}
+                    </p>
                   </div>
-                  <div data-testid="shopping-cart-product-quantity">
-                    {product.quantity}
+
+                  <div className="inc-dec">
+                    <div
+                      className="more-less btn"
+                      onClick={ () => decreaseHandle(product.id) }
+                      data-testid="product-decrease-quantity"
+                    >
+                      -
+                    </div>
+                    <div
+                      className="m-3 product-quantity"
+                      data-testid="shopping-cart-product-quantity"
+                    >
+                      {product.quantity}
+                    </div>
+                    <div
+                      className="more-less btn"
+                      onClick={ (event) => increaseHandle(product.id) }
+                      data-testid="product-increase-quantity"
+                    >
+                      +
+                    </div>
                   </div>
-                  <div
-                    className="inc-dec"
-                    onClick={ (event) => increaseHandle(product.id) }
-                    data-testid="product-increase-quantity"
-                  >
-                    +
-                  </div>
-                </div>
-                <span>
-                  $
-                  {product.price.toFixed(2)}
-                </span>
-              </li>
+                  <span>
+                    $
+                    {product.price.toFixed(2)}
+                  </span>
+                </li>
+                <hr />
+              </div>
             ))}
           </ul>
         </div>
       )}
       <div className="total">
         <div>
-          TOTAL: R$
-          {totalPriceState}
+          <p>Valor Total Da Compra:</p>
+          <span>
+            $
+            {totalPriceState}
+          </span>
         </div>
         {location.pathname === '/cart' && (
           <Link to="/checkout">
