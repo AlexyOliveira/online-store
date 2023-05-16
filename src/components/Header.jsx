@@ -34,20 +34,28 @@ function Header() {
     const sandBtn = document.querySelector('#sand-btn');
     const categories = document.querySelector('#initial-p-categories');
     const hideCategories = 'hide-categories';
-    const number = 707;
+    const number = 668;
+    const hideSandBtn = 'hide-sand-btn';
 
     if (history.location.pathname === '/') {
       if (screenWidth >= number) {
-        sandBtn.classList.add('hide-sand-btn');
+        sandBtn.classList.add(hideSandBtn);
         categories.classList.add(hideCategories);
       } else {
-        sandBtn.classList.remove('hide-sand-btn');
+        sandBtn.classList.remove(hideSandBtn);
         categories.classList.remove(hideCategories);
       }
       if (screenWidth <= number) {
         categories.classList.add(hideCategories);
       } else {
         categories.classList.remove(hideCategories);
+      }
+    }
+    if (history.location.pathname === '/cart') {
+      if (screenWidth >= number) {
+        sandBtn.classList.add(hideSandBtn);
+      } else {
+        sandBtn.classList.remove(hideSandBtn);
       }
     }
   }, [screenWidth]);
@@ -69,6 +77,7 @@ function Header() {
       {[0].map((expand) => (
         <Navbar key={ expand } bg="light" expand={ expand } className="mb-3 p-0">
           <Container fluid>
+
             <Form
               className="d-flex header-search"
               onSubmit={ (e) => {
@@ -76,6 +85,11 @@ function Header() {
                 handleClick();
               } }
             >
+              <Navbar.Toggle
+                id="sand-btn"
+                className="sand-btn"
+                aria-controls={ `offcanvasNavbar-expand-${expand}` }
+              />
               <Form.Control
                 onChange={ handleChange }
                 onKeyDown={ (e) => {
@@ -97,12 +111,6 @@ function Header() {
               </Button>
             </Form>
             <div className="cont">
-              <Navbar.Toggle
-                id="sand-btn"
-                className="sand-btn"
-                aria-controls={ `offcanvasNavbar-expand-${expand}` }
-              />
-
               <img src={ logo } className="brand" alt="logo" />
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Link to="/cart" className="cart-link">

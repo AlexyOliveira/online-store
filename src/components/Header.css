@@ -62,7 +62,6 @@
   bottom: 23px;
   right: 20px;
 }
-
 .cart-link {
   text-decoration: none;
 }
@@ -108,18 +107,27 @@
 }
 
 /* `md` applies to small devices (landscape phones, less than 768px)*/
-@media (min-width: 767.98px) {
+@media (max-width: 733px) {
+  .search-area {
+    width: 140px;
+  }
+}
+
+@media (max-width: 640px) {
+  .search-area {
+  width: 100%;
+  }
 }
 
 /* `lg` applies to medium devices (tablets, less than 992px)*/
-@media (min-width: 850px) {
+@media (min-width: 900px) {
   .search-area {
     width: 380px;
   }
 }
 
 /* `xl` applies to large devices (desktops, less than 1200px)*/
-@media (min-width: 1199.98px) {
+@media (min-width: 1220px) {
   .search-area {
     width: 700px;
   }
