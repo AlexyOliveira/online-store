@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import {
   getCategories,
   getProductsFromCategoryAndQuery,
@@ -10,6 +11,7 @@ import './Categories.css';
 function Categories() {
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     const allCategories = async () => {
       const categoriesReturn = await getCategories();
@@ -23,6 +25,7 @@ function Categories() {
     const products = await getProductsFromCategoryAndQuery(id, '');
     dispatch(isLoadingReducer(false));
     dispatch(saveProducts(products.results));
+    history.push('/');
   };
   return (
     <div className="categories-container">
