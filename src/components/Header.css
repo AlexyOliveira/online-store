@@ -84,12 +84,15 @@
 }
 
 .offcanvas-header {
-  background-color: #2fc18c;
+  background-color: #003be5;
   color: black;
   padding: 10px;
   display: flex;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   padding: 20px;
+}
+.offcanvas-title {
+  color: white;
 }
 
 .offcanvas-title {
