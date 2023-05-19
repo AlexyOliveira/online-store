@@ -65,7 +65,7 @@ function Form() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <div className="review-form">
         <h1>Avaliações</h1>
         <input

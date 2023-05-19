@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { getProductById } from '../services/api';
 import Form from '../components/Form';
 import { setProductsSum } from '../redux/actions';
+import './ProductDetails.css';
 
 function ProductDetails() {
   const [product, setProduct] = useState([]);
@@ -79,52 +80,60 @@ function ProductDetails() {
     productsSum();
   };
   return (
-    <div>
+    <div className="product-datails-container">
       <Header />
-      <div>
-        {loading ? (
-          <h1>carregando..</h1>
-        ) : (
-          <>
-            <div>
-              <p data-testid="product-detail-name">{product.title}</p>
-              {isFreeShipping && (
-                <p data-testid="free-shipping">Frete grátis</p>
-              )}
-              <img
-                data-testid="product-detail-image"
-                src={ thumb }
-                alt={ product.title }
-              />
-              <span data-testid="product-detail-price">
-                R$
-                {' '}
-                {product.price}
-              </span>
-            </div>
+
+      {loading ? (
+        <h1>carregando..</h1>
+      ) : (
+        <div className="a">
+          <div className="product-title-area">
+            <p data-testid="product-detail-name">{product.title}</p>
+            <img
+              data-testid="product-detail-image"
+              src={ thumb }
+              alt={ product.title }
+            />
+            {isFreeShipping && (
+              <p className="free-shipping" data-testid="free-shipping">Frete grátis</p>
+            )}
+          </div>
+          <div className="btn-details-price-area">
             <div className="descriptions">
               <ul>
                 {details.map(
                   (detail) => detail.value_name && (
                     <li key={ detail.id }>
-                      <span style={ { color: 'red' } }>{detail.name}</span>
-                      {': '}
-                      {detail.value_name}
+                      <p>
+                        {detail.name}
+                        {': '}
+                        {detail.value_name}
+                      </p>
                     </li>
                   ),
                 )}
               </ul>
             </div>
-          </>
-        )}
-        <button
-          onClick={ () => handleClick(product) }
-          data-testid="product-detail-add-to-cart"
-          type="button"
-        >
-          Adicionar ao Carrinho
-        </button>
-      </div>
+            <div className="button-price">
+              <span data-testid="product-detail-price">
+                R$
+                {' '}
+                {product.price}
+              </span>
+              <button
+                onClick={ () => handleClick(product) }
+                data-testid="product-detail-add-to-cart"
+                type="button"
+                className="btn btn-primary"
+              >
+                Adicionar ao Carrinho
+              </button>
+            </div>
+          </div>
+
+        </div>
+      )}
+
       <Form productId={ product.id } />
     </div>
   );
