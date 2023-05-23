@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../components/Header';
@@ -10,6 +12,7 @@ function ProductDetails() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
   const [thumb, setThumb] = useState([]);
+  const [thumbList, setThumbList] = useState([]);
   const [details, setDetails] = useState([]);
   const [isFreeShipping, setIsFreeShipping] = useState();
   const dispatch = useDispatch();
@@ -24,6 +27,7 @@ function ProductDetails() {
       const productResult = await getProductById(LocalStorageId);
       const { pictures, attributes, shipping } = productResult;
       setThumb(pictures[0].url);
+      setThumbList(pictures);
       setDetails(attributes);
       setProduct(productResult);
       setLoading(false);
@@ -82,7 +86,6 @@ function ProductDetails() {
   return (
     <div className="product-datails-container">
       <Header />
-
       {loading ? (
         <h1>carregando..</h1>
       ) : (
@@ -95,8 +98,27 @@ function ProductDetails() {
               alt={ product.title }
             />
             {isFreeShipping && (
-              <p className="free-shipping" data-testid="free-shipping">Frete grátis</p>
+              <p className="free-shipping" data-testid="free-shipping">
+                Frete grátis
+              </p>
             )}
+            <div>
+              {thumbList.map((t) => (
+                <img
+                  onClick={ () => setThumb(t.url) }
+                  style={ {
+                    width: '50px',
+                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+                    marginTop: '30px',
+                    marginRight: '10px',
+                    cursor: 'pointer',
+                  } }
+                  key={ t.id }
+                  src={ t.url }
+                  alt="product"
+                />
+              ))}
+            </div>
           </div>
           <div className="btn-details-price-area">
             <div className="descriptions">
@@ -130,7 +152,6 @@ function ProductDetails() {
               </button>
             </div>
           </div>
-
         </div>
       )}
 

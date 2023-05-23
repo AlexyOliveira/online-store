@@ -133,6 +133,10 @@
   display: flex;
 }
 
+.quantity {
+  font-size: 12px;
+  font-weight: 600;
+}
 
 @media ( max-width : 915px ) {
 

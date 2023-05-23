@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable sonarjs/no-use-of-empty-return-value */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
@@ -13,6 +15,10 @@ function Cart() {
   const dispatch = useDispatch();
   const { location } = useHistory();
   const titleLenght = 20;
+
+  const handleClick = (id) => {
+    localStorage.setItem('id', id);
+  };
 
   const productsSumIncrease = () => {
     const localStorageProducts = localStorage.getItem('cart2709');
@@ -135,7 +141,14 @@ function Cart() {
                     X
                   </span>
                   <div className="img-title">
-                    <img src={ product.thumbnail } alt={ product.title } />
+                    <Link to="/details">
+                      <img
+                        onClick={ () => handleClick(product.id) }
+                        src={ product.thumbnail }
+                        alt={ product.title }
+                        style={ { cursor: 'pointer' } }
+                      />
+                    </Link>
                     <p
                       data-testid="shopping-cart-product-name"
                       title={ product.title }
@@ -173,6 +186,11 @@ function Cart() {
                     {product.price.toFixed(2)}
                   </span>
                 </li>
+                <p className="quantity">
+                  Disponível:
+                  {' '}
+                  {product.availableQuantity}
+                </p>
                 <hr />
               </div>
             ))}
