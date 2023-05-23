@@ -1,22 +1,24 @@
 .li-categorie {
-    padding: 5px;
+  padding: 5px;
 }
+
 .li-categorie:hover {
-    background-color: #2fc18c60;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #2fc18c60;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .categories-container {
-    background-color: white;
-    width: 270px;
-    height: 100%;
+  background-color: white;
+  height: 100%;
+  width: 270px;
 }
 
 
-@media (min-width: 707px) {
-    .categories-container {
-        margin-top: 60px;
-        padding-top: 20px;
-    }
+@media ( min-width : 707px ) {
+
+  .categories-container {
+    margin-top: 60px;
+    padding-top: 20px;
+  }
 }

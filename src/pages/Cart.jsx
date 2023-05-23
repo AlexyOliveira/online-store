@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
 import './Cart.css';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -160,7 +162,7 @@ function Cart() {
                     </div>
                     <div
                       className="more-less btn"
-                      onClick={ (event) => increaseHandle(product.id) }
+                      onClick={ () => increaseHandle(product.id) }
                       data-testid="product-increase-quantity"
                     >
                       +

@@ -1,7 +1,84 @@
+/* stylelint-disable selector-max-specificity */
 .form-container {
-  border: 2px solid purple;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container textarea {
+  height: 152px;
+  margin: 10px;
+  width: 40%;
+}
+
+#email {
+  height: 35px;
+  margin: 10px;
+  width: 30%;
+}
+
+.review-form {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+
+.review-form h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.s {
+  align-self: center;
+  margin-bottom: 10px;
+  width: 30%;
+}
+
+.rates {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  width: 95%;
+}
+
+.email-rate {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.email-rate h4 {
+  margin-right: 80px;
 }
 
 .red {
   color: red;
+}
+
+@media ( max-width : 940px ) {
+
+  #email {
+    width: 40%;
+  }
+
+  .form-container textarea {
+    width: 60%;
+  }
+}
+
+@media ( max-width : 646px ) {
+
+  #email {
+    width: 60%;
+  }
+
+  .form-container textarea {
+    width: 80%;
+  }
 }

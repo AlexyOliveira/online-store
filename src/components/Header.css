@@ -1,12 +1,13 @@
+/* stylelint-disable declaration-block-no-duplicate-properties */
 .header {
   display: flex;
   flex-direction: column;
-  text-align: center;
   justify-content: center;
   margin-top: 0;
-  width: 100%;
   position: fixed;
+  text-align: center;
   top: 0;
+  width: 100%;
 }
 
 .cart-btn {
@@ -16,16 +17,18 @@
 
 .categories-icon {
   color: white;
-  font-size: 30px;
   float: left;
+  font-size: 30px;
 }
+
 .header-search {
-  margin-top: 20px;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
+
 .brand {
-  width: 51%;
   padding: 5px;
+  width: 51%;
 }
 
 .offcanvas {
@@ -34,34 +37,38 @@
 
 .container-fluid {
   background-color: #003be5;
-  padding-top: 5px;
   padding-bottom: 5px;
+  padding-top: 5px;
 }
+
 .sand-btn {
   background-color: aliceblue;
 }
+
 .hide-sand-btn {
   display: none;
 }
+
 .navbar-toggler-icon {
-  width: 15px;
   height: 20px;
+  width: 15px;
 }
 
 .cart-count {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  color: black;
-  text-align: center;
-  font-size: 14px;
-  line-height: 30px;
   background-color: #2fc18c;
-  position: relative;
+  border-radius: 50%;
   bottom: 23px;
+  color: black;
+  display: inline-block;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
   right: 20px;
+  text-align: center;
+  width: 30px;
 }
+
 .cart-link {
   text-decoration: none;
 }
@@ -71,11 +78,13 @@
 }
 
 .cont {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .navbar {
+  display: flex;
+  justify-content: center;
   padding-top: 0;
 }
 
@@ -85,57 +94,51 @@
 
 .offcanvas-header {
   background-color: #003be5;
-  color: black;
-  padding: 10px;
-  display: flex;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  color: black;
+  display: flex;
+  padding: 10px;
   padding: 20px;
-}
-.offcanvas-title {
-  color: white;
 }
 
 .offcanvas-title {
+  color: white;
   text-align: center;
   width: 100%;
 }
 
-.navbar {
-  display: flex;
-  justify-content: center;
-}
-
 /* sm applies to x-small devices portrait phones, less than 576px */
-@media (min-width: 575.98px) {
-}
 
-/* `md` applies to small devices (landscape phones, less than 768px)*/
-@media (max-width: 733px) {
+/* `md` applies to small devices (landscape phones, less than 768px) */
+
+@media ( max-width : 733px ) {
+
   .search-area {
     width: 140px;
   }
 }
 
-@media (max-width: 640px) {
+@media ( max-width : 640px ) {
+
   .search-area {
-  width: 100%;
+    width: 100%;
   }
 }
 
-/* `lg` applies to medium devices (tablets, less than 992px)*/
-@media (min-width: 900px) {
+/* `lg` applies to medium devices (tablets, less than 992px) */
+
+@media ( min-width : 900px ) {
+
   .search-area {
     width: 380px;
   }
 }
 
-/* `xl` applies to large devices (desktops, less than 1200px)*/
-@media (min-width: 1220px) {
+/* `xl` applies to large devices (desktops, less than 1200px) */
+
+@media ( min-width : 1220px ) {
+
   .search-area {
     width: 700px;
   }
-}
-
-/* `xxl` applies to x-large devices (large desktops, less than 1400px)*/
-@media (max-width: 1399.98px) {
 }

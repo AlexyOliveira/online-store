@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
 import './Form.css';
 
@@ -75,7 +77,7 @@ function Form() {
           placeholder="Email"
           type="email"
           name="email"
-          id=""
+          id="email"
         />
         <div className="stars-hate">
           {arr.map((a, index) => (
@@ -106,28 +108,40 @@ function Form() {
           onClick={ handleSubmit }
           data-testid="submit-review-btn"
           type="button"
+          className="btn btn-success s"
         >
           Avaliar
         </button>
       </div>
       <div className="rates">
         {rates.map((h, index) => (
-          <div key={ index }>
-            <h4 data-testid="review-card-email">{h.email}</h4>
-            <p data-testid="review-card-rating">
-              {' '}
-              {h.rate}
-              {' '}
-              {arr.map((a, index2) => (
-                <i
-                  key={ index2 }
-                  data-testid="review-card-rating"
-                  className={ a > h.rate ? 'fa-regular fa-star' : 'fa-solid fa-star red' }
-                />
-              ))}
+          <div
+            style={ { background: 'white', margin: '5px', padding: '20px' } }
+            key={ index }
+          >
+            <div className="email-rate">
+              <h4 data-testid="review-card-email">{h.email}</h4>
+              <p data-testid="review-card-rating">
+                {' '}
+                {arr.map((a, index2) => (
+                  <i
+                    key={ index2 }
+                    data-testid="review-card-rating"
+                    className={
+                      a > h.rate ? 'fa-regular fa-star' : 'fa-solid fa-star red'
+                    }
+                  />
+                ))}
+              </p>
+            </div>
+            <p
+              style={ { wordWrap: 'break-word', /* Quebra de palavras */
+                transition: 'width 0.3s ease' } }
+              data-testid="review-card-evaluation"
+            >
+              {h.text}
 
             </p>
-            <p data-testid="review-card-evaluation">{h.text}</p>
           </div>
         ))}
       </div>

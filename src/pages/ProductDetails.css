@@ -1,86 +1,93 @@
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
 .product-datails-container {
-    margin-top: 78px;
-    padding-top: 40px;
+  margin-top: 78px;
+  padding-top: 40px;
 }
 
 .a {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-bottom: 50px;
-    
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
 }
 
 .product-title-area {
-    background: #FFFFFF;
-    display: flex;
-    justify-content: space-between;
-    align-self: start;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
-    padding: 30px;
-    width: 35%;
-    height: 80%;
+  align-items: center;
+  align-self: start;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  justify-content: space-between;
+  padding: 30px;
+  text-align: center;
+  width: 35%;
 }
-.product-title-area img{
-   width: 80%;
+
+.product-title-area img {
+  width: 80%;
 }
 
 .product-title-area p {
-    font-family: 'Epilogue';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 20px;
- }
+  font-family: Epilogue;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
 
 .btn-details-price-area {
-    background: #FFFFFF;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 50px;
-    width: 509px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 50px;
+  width: 509px;
 }
 
 .btn-details-price-area p {
-    font-family: 'Epilogue';
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 20px;
-color: #94979D;
+  color: #94979d;
+  font-family: Epilogue;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .button-price {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 40px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 40px;
 }
 
 .button-price span {
-    font-family: 'Epilogue';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 20px;
-    /* identical to box height */
-    
-    
-    color: #444955;
+  color: #444955;
+  font-family: Epilogue;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  margin-bottom: 10px;
 }
+
 .free-shipping {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-@media (max-width: 805.98px) {
-    .product-title-area img{
-       width: 100%;
-     }
-     .product-title-area {
-        width: 80%;
-     }
+
+@media ( max-width : 805.98px ) {
+
+  .product-title-area img {
+    width: 100%;
+  }
+
+  .product-title-area {
+    width: 80%;
+  }
 }

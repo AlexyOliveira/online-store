@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/jsx-max-depth */
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
@@ -77,7 +80,6 @@ function Header() {
       {[0].map((expand) => (
         <Navbar key={ expand } bg="light" expand={ expand } className="mb-3 p-0">
           <Container fluid>
-
             <Form
               className="d-flex header-search"
               onSubmit={ (e) => {
@@ -111,7 +113,13 @@ function Header() {
               </Button>
             </Form>
             <div className="cont">
-              <img src={ logo } className="brand" alt="logo" />
+              <img
+                style={ { cursor: 'pointer' } }
+                src={ logo }
+                onClick={ () => history.push('/') }
+                className="brand"
+                alt="logo"
+              />
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Link to="/cart" className="cart-link">
                   <div className="cart-container">

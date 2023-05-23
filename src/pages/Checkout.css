@@ -1,104 +1,114 @@
+/* stylelint-disable no-descending-specificity */
+
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
 .checkout-container {
-  display: flex;
-  width: 100%;
-  justify-content: center;
   align-items: center;
+  display: flex;
   height: 100vh;
+  justify-content: center;
+  width: 100%;
 }
 
 .buy-form {
+  align-items: center;
   background-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  margin-top: 100px;
   padding: 20px;
   width: 70%;
-  margin-top: 100px;
 }
 
 .buy-form button {
-  width: 35%;
-  height: 38.63px;
-  margin-top: 20px;
   background: #31c28d;
   border: none;
-  font-family: "Epilogue";
+  color: white;
+  font-family: Epilogue;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
+  height: 38.63px;
   line-height: 16px;
-  color: #ffffff;
+  margin-top: 20px;
+  width: 35%;
 }
 
 .payment-inputs {
   display: flex;
-  width: 80%;
   flex-wrap: wrap;
+  width: 80%;
 }
 
-.payment-inputs input:nth-child(1) {
-  border: 1px solid #94979d;
-  width: 49%;
-  margin: 1px;
-}
-.payment-inputs input:nth-child(2) {
+.payment-inputs input:nth-child( 1 ) {
   border: 1px solid #94979d;
   margin: 1px;
   width: 49%;
 }
-.payment-inputs input:nth-child(3) {
+
+.payment-inputs input:nth-child( 2 ) {
   border: 1px solid #94979d;
   margin: 1px;
   width: 49%;
 }
-.payment-inputs input:nth-child(4) {
+
+.payment-inputs input:nth-child( 3 ) {
   border: 1px solid #94979d;
   margin: 1px;
   width: 49%;
 }
-.payment-inputs input:nth-child(5) {
+
+.payment-inputs input:nth-child( 4 ) {
   border: 1px solid #94979d;
+  margin: 1px;
+  width: 49%;
+}
+
+.payment-inputs input:nth-child( 5 ) {
+  border: 1px solid #94979d;
+  margin: 1px;
   width: 19%;
-  margin: 1px;
 }
-.payment-inputs input:nth-child(6) {
+
+.payment-inputs input:nth-child( 6 ) {
   border: 1px solid #94979d;
+  margin: 1px;
   width: 79%;
-  margin: 1px;
 }
-.payment-inputs input:nth-child(7) {
+
+.payment-inputs input:nth-child( 7 ) {
   border: 1px solid #94979d;
+  margin: 1px;
   width: 79%;
-  margin: 1px;
 }
-.payment-inputs input:nth-child(8) {
+
+.payment-inputs input:nth-child( 8 ) {
   border: 1px solid #94979d;
+  margin: 1px;
   width: 19%;
-  margin: 1px;
 }
-.payment-inputs input:nth-child(9) {
+
+.payment-inputs input:nth-child( 9 ) {
   border: 1px solid #94979d;
-  width: 79%;
   margin: 1px;
+  width: 79%;
 }
 
 .payment-method {
-  width: 80%;
   text-align: center;
+  width: 80%;
 }
 
 .payment-method i {
-  font-size: 50px;
-  padding: 0px 15px;
   font-size: 40px;
   margin: 5px;
+  padding: 0 15px;
 }
 
 .payment-method input {
-  margin: 5px;
   background-color: blue;
+  margin: 5px;
 }
 
 .boleto {
@@ -106,70 +116,87 @@
 }
 
 .card-methods {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
 }
+
 .card {
   position: static;
 }
+
 .select-area {
-  width: 19%;
-  margin: 1px;
   border: 1px solid #94979d;
+  margin: 1px;
+  width: 19%;
 }
 
-@media (max-width: 900px) {
+@media ( max-width : 900px ) {
+
   .buy-form {
     margin-top: 100px;
   }
 }
-@media (max-width: 660px) {
+
+@media ( max-width : 660px ) {
+
   .buy-form {
     margin-top: 200px;
   }
 }
 
-@media (max-width: 600px) {
+@media ( max-width : 600px ) {
+
   .buy-form {
     margin-top: 275px;
   }
 }
 
-@media (max-width: 415px) {
+@media ( max-width : 415px ) {
+
   .buy-form {
     margin-top: 500px;
     width: 80%;
   }
-  .payment-inputs input:nth-child(1) {
+
+  .payment-inputs input:nth-child( 1 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(2) {
+
+  .payment-inputs input:nth-child( 2 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(3) {
+
+  .payment-inputs input:nth-child( 3 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(4) {
+
+  .payment-inputs input:nth-child( 4 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(5) {
+
+  .payment-inputs input:nth-child( 5 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(6) {
+
+  .payment-inputs input:nth-child( 6 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(7) {
+
+  .payment-inputs input:nth-child( 7 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(8) {
+
+  .payment-inputs input:nth-child( 8 ) {
     width: 100%;
   }
-  .payment-inputs input:nth-child(9) {
+
+  .payment-inputs input:nth-child( 9 ) {
     width: 100%;
   }
+
   .select-area {
     width: 100%;
   }
