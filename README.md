@@ -1,13 +1,27 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Seja bem vindo ao Front-End Online Store!
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Aplicação desenvolvida e estilizada por mim com base nos meus conhecimentos nas tecnologias mencionadas logo abaixo.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+Uma loja com milhares de produtos e suas categorias. Tudo que você precisa para efetuar a compra de um bom produto, desde a escolha ao pagamento 🛒.
+
+ Nessa aplicação, você pode:
+
+- Pesquisar seu produto com uma palavra-chave
+- Navegar por categorias
+- Visualizar o produto com outras imagens e suas especificações
+- Adicionar ao carrinho, podendo adicionar mais do mesmo item
+- Avaliar o produto, deixando uma nota com comentário
+- Finalizar o pedido com várias opções de pagamento
+
+<details>
+  <summary><strong>👨‍💻 Tecnologias usadas</strong></summary><br />
+  
+  - REACT
+  - BOOTSTRAP
+  - REDUX
+  - JAVA-SCRIPT
+  - CSS
+  - HTML
+</details>
+
+API - https://www.mercadopago.com.br
