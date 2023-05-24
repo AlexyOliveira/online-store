@@ -16,6 +16,13 @@ function ProductDetails() {
   const [details, setDetails] = useState([]);
   const [isFreeShipping, setIsFreeShipping] = useState();
   const dispatch = useDispatch();
+
+  const productsSum = () => {
+    const localStorageProducts = localStorage.getItem('cart2709');
+    const productsParse = JSON.parse(localStorageProducts);
+    const sum = productsParse.reduce((ac, produc) => ac + produc.quantity, 0);
+    dispatch(setProductsSum(sum));
+  };
   useEffect(() => {
     const getProduct = async () => {
       const localCart = localStorage.getItem('cart2709');
@@ -34,14 +41,8 @@ function ProductDetails() {
       setIsFreeShipping(shipping.free_shipping);
     };
     getProduct();
+    productsSum();
   }, []);
-
-  const productsSum = () => {
-    const localStorageProducts = localStorage.getItem('cart2709');
-    const productsParse = JSON.parse(localStorageProducts);
-    const sum = productsParse.reduce((ac, produc) => ac + produc.quantity, 0);
-    dispatch(setProductsSum(sum));
-  };
 
   const handleClick = (produc) => {
     const {

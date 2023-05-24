@@ -120,7 +120,6 @@ function Cart() {
   return (
     <div className="cart-container-area">
       <Header />
-
       {!cartList || !cartList.length ? (
         <h3 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
@@ -181,7 +180,7 @@ function Cart() {
                       +
                     </div>
                   </div>
-                  <span>
+                  <span className="price">
                     $
                     {product.price.toFixed(2)}
                   </span>
@@ -207,7 +206,11 @@ function Cart() {
         </div>
         {location.pathname === '/cart' && (
           <Link to="/checkout">
-            <button data-testid="checkout-products" type="button">
+            <button
+              disabled={ !cartList?.length }
+              data-testid="checkout-products"
+              type="button"
+            >
               Finalizar compra
             </button>
           </Link>

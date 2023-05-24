@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './Checkout.css';
+import { useDispatch } from 'react-redux';
 import Header from '../components/Header';
 import PaymentMethods from '../components/PaymentMethods';
+
+import { setProductsSum } from '../redux/actions';
 
 function CheckOut() {
   const [formData, setFormData] = useState({
@@ -20,9 +23,20 @@ function CheckOut() {
   });
   const [isInvalid, setIsInvalid] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const productsSum = () => {
+    const localStorageProducts = localStorage.getItem('cart2709');
+    const productsParse = JSON.parse(localStorageProducts);
+    const sum = productsParse.reduce((ac, produc) => ac + produc.quantity, 0);
+    dispatch(setProductsSum(sum));
+  };
+
+  useEffect(() => {
+    productsSum();
+  }, []);
 
   const handleChange = ({ target }) => {
-    console.log(target.checked);
     const { name, value } = target;
     setFormData({ ...formData, [name]: value });
   };
@@ -38,7 +52,6 @@ function CheckOut() {
   };
 
   const handleSubmit = (e) => {
-    console.log(formData);
     if (
       !formData.name
       || !formData.cpf
@@ -62,7 +75,6 @@ function CheckOut() {
 
   return (
     <div className="checkout-container">
-      {console.log(formData)}
       <Header />
       <form onSubmit={ handleSubmit } className="buy-form" action="">
         <div className="payment-inputs">
@@ -110,7 +122,6 @@ function CheckOut() {
             id=""
             name="zipCode"
             value={ formData.zipCode }
-            pattern="\d{5}-\d{3}"
           />
           <input
             onChange={ handleChange }
